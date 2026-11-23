@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Looks Modelling Academy - Little Miss & Mr South India Season 2 (Hyderabad)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(18, 24, 38, 0.78);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(28, 38, 62, 0.95);
+      --gold-primary: #f59e0b;
+      --gold-light: #fbbf24;
+      --gold-shimmer: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --vip-gold-bg: rgba(245, 158, 11, 0.12);
+      --vip-gold-border: rgba(245, 158, 11, 0.35);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 50% -10%, #1e1b4b 0%, #0c0f1d 45%, #05070c 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 24px 16px 80px;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    /* Canvas Confetti */
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Top Ticker */
+    .ticker-wrap {
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.25) 50%, rgba(245, 158, 11, 0.15) 100%);
+      border-top: 1px solid rgba(245, 158, 11, 0.3);
+      border-bottom: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 8px 0;
+      overflow: hidden;
+      margin-bottom: 24px;
+      border-radius: 8px;
+    }
+    .ticker-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: ticker 30s linear infinite;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fde68a;
+      text-transform: uppercase;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .event-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--gold-light);
+      padding: 6px 18px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+    }
+    .main-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      background: linear-gradient(135deg, #ffffff 10%, #fef08a 50%, #f59e0b 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      line-height: 1.15;
+    }
+    .subtitle {
+      color: #cbd5e1;
+      font-size: 16px;
+      max-width: 720px;
+      margin: 0 auto 16px;
+      font-weight: 500;
+    }
+
+    /* Kaushal Manda Celebrity Spotlight */
+    .vip-spotlight {
+      background: linear-gradient(135deg, rgba(30, 27, 75, 0.8) 0%, rgba(20, 20, 35, 0.9) 50%, rgba(45, 26, 7, 0.8) 100%);
+      border: 2px solid rgba(245, 158, 11, 0.5);
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 12px 35px rgba(245, 158, 11, 0.15), inset 0 0 20px rgba(245, 158, 11, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .vip-spotlight::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .vip-badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold-shimmer);
+      color: #451a03;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+    }
+    .vip-name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .vip-role {
+      color: #fde68a;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .vip-desc {
+      color: #94a3b8;
+      font-size: 13px;
+      margin-top: 6px;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+    .vip-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-celebrate {
+      background: var(--gold-shimmer);
+      color: #451a03;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-celebrate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.6);
+    }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.2s;
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(245, 158, 11, 0.35);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-val { font-size: 28px; font-weight: 800; color: #fff; line-height: 1; }
+    .stat-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-top: 4px; }
+
+    /* Top 3 Podium */
+    .podium-section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .podium-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .podium-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      transition: all 0.25s;
+    }
+    .podium-card:hover {
+      transform: translateY(-4px);
+    }
+    .podium-1 {
+      border: 2px solid rgba(245, 158, 11, 0.6);
+      background: linear-gradient(135deg, rgba(35, 27, 12, 0.9) 0%, rgba(20, 24, 38, 0.85) 100%);
+      box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+    }
+    .podium-2 {
+      border: 2px solid rgba(203, 213, 225, 0.4);
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.85) 100%);
+    }
+    .podium-3 {
+      border: 2px solid rgba(217, 119, 6, 0.4);
+      background: linear-gradient(135deg, rgba(43, 27, 18, 0.85) 0%, rgba(15, 23, 42, 0.85) 100%);
+    }
+    .podium-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .podium-badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-rank-1 { background: var(--gold-shimmer); color: #451a03; }
+    .badge-rank-2 { background: #cbd5e1; color: #0f172a; }
+    .badge-rank-3 { background: #f97316; color: #fff; }
+    .podium-id { font-size: 22px; font-weight: 800; color: #fff; }
+    .podium-score { font-size: 32px; font-weight: 900; color: var(--gold-light); }
+    .podium-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+    /* Controls Bar */
+    .controls-bar {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      border-radius: 18px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 12px 16px 12px 42px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-box input:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+    }
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .select-styled {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Category Tabs */
+    .category-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      scrollbar-width: none;
+    }
+    .category-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      padding: 8px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+    .tab-btn.active {
+      background: var(--gold-shimmer);
+      color: #451a03;
+      border-color: transparent;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+    }
+
+    /* Table Container */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      overflow-x: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      min-width: 900px;
+    }
+    th {
+      background: rgba(15, 23, 42, 0.95);
+      padding: 16px 18px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--card-border);
+    }
+    /* VIP Column Header for Kaushal Manda */
+    th.th-vip {
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.25) 0%, rgba(20, 24, 38, 0.95) 100%);
+      color: #fef08a;
+      border-left: 2px solid rgba(245, 158, 11, 0.4);
+      border-right: 2px solid rgba(245, 158, 11, 0.4);
+      text-align: center;
+    }
+    td {
+      padding: 14px 18px;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: middle;
+    }
+    tr { transition: background-color 0.15s; cursor: pointer; }
+    tr:hover { background: var(--card-hover); }
+
+    /* VIP Cell for Kaushal Manda */
+    td.td-vip {
+      background: rgba(245, 158, 11, 0.06);
+      border-left: 2px solid rgba(245, 158, 11, 0.3);
+      border-right: 2px solid rgba(245, 158, 11, 0.3);
+      text-align: center;
+      font-weight: 800;
+      color: #fef08a;
+      font-size: 16px;
+    }
+
+    /* Ranks & Badges */
+    .rank-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .rank-1 { background: var(--gold-shimmer); color: #451a03; box-shadow: 0 0 16px rgba(245, 158, 11, 0.5); }
+    .rank-2 { background: linear-gradient(135deg, #f1f5f9, #94a3b8); color: #1e293b; }
+    .rank-3 { background: linear-gradient(135deg, #fed7aa, #d97706); color: #7c2d12; }
+    .rank-default { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+
+    .score-badge {
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--gold-light);
+    }
+    .perfect-tag {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-left: 8px;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+    }
+    .contestant-tag {
+      font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+    }
+    .category-sub { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+    /* Modal / Drawer */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+    }
+    .modal-card {
+      background: #0f1422;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 30px rgba(245, 158, 11, 0.15);
+      animation: modalSlide 0.25s ease-out;
+    }
+    @keyframes modalSlide {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .close-btn {
+      background: rgba(255,255,255,0.08);
+      border: none;
+      color: var(--text-muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .close-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 13px;
+    }
+    .breakdown-vip {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+    .btn-action-view {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fde68a;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-action-view:hover {
+      background: var(--gold-shimmer);
+      color: #451a03;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #64748b;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Canvas Confetti -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="container">
+    <!-- Top Animated Ticker -->
+    <div class="ticker-wrap">
+      <div class="ticker-content">
+        ✨ OFFICIAL RESULTS & LEADERBOARD • THE LOOKS MODELLING ACADEMY • LITTLE MISS & MR SOUTH INDIA SEASON 2 • CELEBRITY CHIEF JUDGE & MENTOR: KAUSHAL MANDA (BIGG BOSS 2 WINNER) • 133 CONTESTANTS AUDITIONED • 100% AUDITED SCORES ✨
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="event-badge">👑 Season 2 Hyderabad Grand Auditions</div>
+      <h1 class="main-title">Little Miss & Mr South India</h1>
+      <p class="subtitle">The Looks Modelling Academy — Official 4-Judge Audited Results & Leaderboard</p>
+    </header>
+
+    <!-- Kaushal Manda Celebrity Spotlight Card -->
+    <div class="vip-spotlight">
+      <div>
+        <div class="vip-badge-tag">👑 Celebrity Chief Judge & Grand Mentor</div>
+        <div class="vip-name">
+          Kaushal Manda
+          <span style="font-size: 18px; color: #f59e0b;">★</span>
+        </div>
+        <div class="vip-role">Actor, Supermodel & Bigg Boss Telugu 2 Winner</div>
+        <div class="vip-desc">
+          Official benchmark authority guiding and scoring Season 2 contestants across <strong>Looks</strong>, <strong>Ramp Walk</strong>, <strong>Stage Confidence</strong>, and <strong>Personal Interaction</strong> (40 Pts).
+        </div>
+      </div>
+      <div class="vip-actions">
+        <button class="btn-celebrate" onclick="fireConfetti()">🎉 Celebrate Contestants!</button>
+        <button class="btn-outline" onclick="window.print()">🖨️ Print / Save PDF</button>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🏆</div>
+        <div>
+          <div class="stat-val">133</div>
+          <div class="stat-label">Total Contestants</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👑</div>
+        <div>
+          <div class="stat-val">Kaushal Manda</div>
+          <div class="stat-label">Chief Judge (40 Pts)</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">💎</div>
+        <div>
+          <div class="stat-val">4</div>
+          <div class="stat-label">Perfect 160 Scorers</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🎭</div>
+        <div>
+          <div class="stat-val">8</div>
+          <div class="stat-label">Pageant Divisions</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top 3 Podium (Dynamic by Category) -->
+    <div class="podium-section">
+      <div class="section-title">
+        <span>🌟 Category Hall of Fame (Top 3 Qualifiers)</span>
+      </div>
+      <div class="podium-grid" id="podiumContainer">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="category-tabs" id="categoryTabs">
+      <button class="tab-btn active" onclick="filterCategory('ALL')">All Categories (133)</button>
+      <button class="tab-btn" onclick="filterCategory('Little Miss (LG)')">Little Miss (LG) [33]</button>
+      <button class="tab-btn" onclick="filterCategory('Little Mister (LB)')">Little Mister (LB) [17]</button>
+      <button class="tab-btn" onclick="filterCategory('Junior Miss (JG)')">Junior Miss (JG) [26]</button>
+      <button class="tab-btn" onclick="filterCategory('Junior Mister (JB)')">Junior Mister (JB) [22]</button>
+      <button class="tab-btn" onclick="filterCategory('Pre-teen Girls (PG / Teen Miss)')">Pre-teen Girls (PG) [12]</button>
+      <button class="tab-btn" onclick="filterCategory('Pre-teen Boys (PB)')">Pre-teen Boys (PB) [9]</button>
+      <button class="tab-btn" onclick="filterCategory('Teen Girls (TG / Miss Teen)')">Teen Girls (TG) [9]</button>
+      <button class="tab-btn" onclick="filterCategory('Teen Boys (TB)')">Teen Boys (TB) [5]</button>
+    </div>
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search Contestant ID (e.g. LG 017, JG 062, LB 008)..." oninput="render()">
+      </div>
+      <div class="filter-group">
+        <select class="select-styled" id="sortSelect" onchange="render()">
+          <option value="score_desc">Grand Total (Highest First)</option>
+          <option value="kaushal_desc">Kaushal Manda Score (Highest First)</option>
+          <option value="score_asc">Grand Total (Lowest First)</option>
+          <option value="id_asc">Contestant ID (A - Z)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Results Table (Kaushal Manda First) -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 70px; text-align: center;">Rank</th>
+            <th>Contestant ID</th>
+            <th>Category</th>
+            <!-- KAUSHAL MANDA IN FIRST PLACE & HIGHLIGHTED -->
+            <th class="th-vip">👑 Kaushal Manda (40)</th>
+            <th style="text-align: center;">Judge Ashritha (40)</th>
+            <th style="text-align: center;">Judge Eshan (40)</th>
+            <th style="text-align: center;">Judge Prasanna (40)</th>
+            <th style="text-align: right; padding-right: 24px;">Grand Total (160)</th>
+            <th style="text-align: center; width: 120px;">Breakdown</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>© 2026 The Looks Modelling Academy • Little Miss & Mr South India Season 2 • Official Audited Scores</p>
+      <p style="margin-top: 4px; font-size: 11px;">Chief Celebrity Mentor: Kaushal Manda • Panel Judges: Ashritha, Eshan, Prasanna</p>
+    </div>
+  </div>
+
+  <!-- Details Modal -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <div class="event-badge" id="modalCategory" style="margin-bottom: 4px;">Category</div>
+          <h2 class="main-title" style="font-size: 28px; margin-bottom: 0;" id="modalId">ID</h2>
+        </div>
+        <button class="close-btn" onclick="closeModal()">✕</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const DATA = [{"Category": "Little Miss (LG)", "Contestant ID": "LG 013", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 8.0, "Ashritha_Total": 37.0, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 39.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.0, "Kaushal_Total": 38.0, "3_Judges_Grand_Total": 114.0, "3_Judges_Average": 38.0, "Audit_Notes": null, "4_Judges_Grand_Total": 152.0, "4_Judges_Average": 38.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 002", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 9.0, "Ashritha_Total": 38.0, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 37.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 10.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.0, "Kaushal_Int": 9.3, "Kaushal_Total": 37.6, "3_Judges_Grand_Total": 113.0, "3_Judges_Average": 37.67, "Audit_Notes": "Written as LG 02 by Ashritha/Eshan, 012 by Prasanna", "4_Judges_Grand_Total": 150.6, "4_Judges_Average": 37.65}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 004", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 40.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 9.0, "Eshan_Total": 39.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 10.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 10.0, "Kaushal_Walk": 9.7, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.7, "Kaushal_Total": 39.1, "3_Judges_Grand_Total": 117.0, "3_Judges_Average": 39.0, "Audit_Notes": null, "4_Judges_Grand_Total": 156.1, "4_Judges_Average": 39.02}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 006", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 8.0, "Ashritha_Total": 37.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.0, "Kaushal_Total": 38.0, "3_Judges_Grand_Total": 114.0, "3_Judges_Average": 38.0, "Audit_Notes": "Prasanna left chest number blank, matched by row order", "4_Judges_Grand_Total": 152.0, "4_Judges_Average": 38.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 015", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 36.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 36.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 8.7, "Kaushal_Conf": 9.0, "Kaushal_Int": 8.7, "Kaushal_Total": 35.4, "3_Judges_Grand_Total": 106.0, "3_Judges_Average": 35.33, "Audit_Notes": null, "4_Judges_Grand_Total": 141.4, "4_Judges_Average": 35.35}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 017", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 40.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 10.0, "Kaushal_Walk": 10.0, "Kaushal_Conf": 10.0, "Kaushal_Int": 10.0, "Kaushal_Total": 40.0, "3_Judges_Grand_Total": 120.0, "3_Judges_Average": 40.0, "Audit_Notes": "PERFECT 120/120", "4_Judges_Grand_Total": 160.0, "4_Judges_Average": 40.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 018", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 40.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 10.0, "Kaushal_Walk": 10.0, "Kaushal_Conf": 10.0, "Kaushal_Int": 10.0, "Kaushal_Total": 40.0, "3_Judges_Grand_Total": 120.0, "3_Judges_Average": 40.0, "Audit_Notes": "PERFECT 120/120", "4_Judges_Grand_Total": 160.0, "4_Judges_Average": 40.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 019", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 40.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 10.0, "Kaushal_Walk": 10.0, "Kaushal_Conf": 10.0, "Kaushal_Int": 10.0, "Kaushal_Total": 40.0, "3_Judges_Grand_Total": 120.0, "3_Judges_Average": 40.0, "Audit_Notes": "PERFECT 120/120", "4_Judges_Grand_Total": 160.0, "4_Judges_Average": 40.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 022", "Ashritha_Looks": 10.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 9.0, "Ashritha_Total": 37.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 35.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 9.0, "Kaushal_Int": 8.7, "Kaushal_Total": 36.4, "3_Judges_Grand_Total": 109.0, "3_Judges_Average": 36.33, "Audit_Notes": null, "4_Judges_Grand_Total": 145.4, "4_Judges_Average": 36.35}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 023", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 8.0, "Ashritha_Total": 35.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 33.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.3, "Kaushal_Total": 34.7, "3_Judges_Grand_Total": 104.0, "3_Judges_Average": 34.67, "Audit_Notes": "Prasanna wrote 024 on this row", "4_Judges_Grand_Total": 138.7, "4_Judges_Average": 34.67}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 024", "Ashritha_Looks": 10.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 36.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 9.0, "Eshan_Total": 36.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 9.3, "Kaushal_Conf": 8.0, "Kaushal_Int": 9.0, "Kaushal_Total": 36.0, "3_Judges_Grand_Total": 108.0, "3_Judges_Average": 36.0, "Audit_Notes": "Prasanna row 11 written 026", "4_Judges_Grand_Total": 144.0, "4_Judges_Average": 36.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 026", "Ashritha_Looks": 8.0, "Ashritha_Walk": 6.0, "Ashritha_Conf": 6.0, "Ashritha_Int": 4.0, "Ashritha_Total": 24.0, "Eshan_Looks": 8.0, "Eshan_Walk": 6.0, "Eshan_Conf": 5.0, "Eshan_Int": 4.0, "Eshan_Total": 23.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 7.0, "Kaushal_Conf": 6.3, "Kaushal_Int": 5.3, "Kaushal_Total": 26.9, "3_Judges_Grand_Total": 81.0, "3_Judges_Average": 27.0, "Audit_Notes": null, "4_Judges_Grand_Total": 107.9, "4_Judges_Average": 26.98}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 029", "Ashritha_Looks": 7.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 4.0, "Ashritha_Total": 27.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 1.0, "Eshan_Total": 25.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 7.7, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.3, "Kaushal_Int": 4.7, "Kaushal_Total": 29.0, "3_Judges_Grand_Total": 87.0, "3_Judges_Average": 29.0, "Audit_Notes": null, "4_Judges_Grand_Total": 116.0, "4_Judges_Average": 29.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 036", "Ashritha_Looks": 7.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 8.0, "Ashritha_Total": 35.0, "Eshan_Looks": 7.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 8.0, "Eshan_Total": 35.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 6.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 7.7, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.7, "Kaushal_Int": 7.3, "Kaushal_Total": 34.7, "3_Judges_Grand_Total": 104.0, "3_Judges_Average": 34.67, "Audit_Notes": null, "4_Judges_Grand_Total": 138.7, "4_Judges_Average": 34.67}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 037", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 6.0, "Ashritha_Int": 9.0, "Ashritha_Total": 32.0, "Eshan_Looks": 7.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 8.0, "Eshan_Total": 35.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 9.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 9.7, "Kaushal_Conf": 7.3, "Kaushal_Int": 8.7, "Kaushal_Total": 33.7, "3_Judges_Grand_Total": 101.0, "3_Judges_Average": 33.67, "Audit_Notes": "Eshan has swap arrow with 038", "4_Judges_Grand_Total": 134.7, "4_Judges_Average": 33.67}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 038", "Ashritha_Looks": 10.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 6.0, "Ashritha_Total": 33.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 6.0, "Eshan_Total": 33.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 6.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 9.3, "Kaushal_Conf": 8.3, "Kaushal_Int": 6.0, "Kaushal_Total": 33.3, "3_Judges_Grand_Total": 100.0, "3_Judges_Average": 33.33, "Audit_Notes": "Eshan row 15 swapped with 16", "4_Judges_Grand_Total": 133.3, "4_Judges_Average": 33.33}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 039", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 38.0, "Eshan_Looks": 10.0, "Eshan_Walk": 7.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 35.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 39.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 9.0, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.3, "Kaushal_Total": 37.3, "3_Judges_Grand_Total": 112.0, "3_Judges_Average": 37.33, "Audit_Notes": null, "4_Judges_Grand_Total": 149.3, "4_Judges_Average": 37.33}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 045", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 7.0, "Ashritha_Total": 30.0, "Eshan_Looks": 7.0, "Eshan_Walk": 8.0, "Eshan_Conf": 6.0, "Eshan_Int": 7.0, "Eshan_Total": 28.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 9.0, "Prasanna_Total": 32.0, "Kaushal_Looks": 7.7, "Kaushal_Walk": 8.3, "Kaushal_Conf": 6.3, "Kaushal_Int": 7.7, "Kaushal_Total": 30.0, "3_Judges_Grand_Total": 90.0, "3_Judges_Average": 30.0, "Audit_Notes": "Prasanna corrected 034 to 045", "4_Judges_Grand_Total": 120.0, "4_Judges_Average": 30.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 050", "Ashritha_Looks": 8.0, "Ashritha_Walk": 5.0, "Ashritha_Conf": 4.0, "Ashritha_Int": 3.0, "Ashritha_Total": 20.0, "Eshan_Looks": 8.0, "Eshan_Walk": 7.0, "Eshan_Conf": 4.0, "Eshan_Int": 3.0, "Eshan_Total": 22.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 6.0, "Prasanna_Total": 29.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 7.0, "Kaushal_Conf": 4.7, "Kaushal_Int": 4.0, "Kaushal_Total": 23.7, "3_Judges_Grand_Total": 71.0, "3_Judges_Average": 23.67, "Audit_Notes": null, "4_Judges_Grand_Total": 94.7, "4_Judges_Average": 23.68}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 051", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 6.0, "Ashritha_Total": 29.0, "Eshan_Looks": 8.0, "Eshan_Walk": 7.0, "Eshan_Conf": 7.0, "Eshan_Int": 6.0, "Eshan_Total": 28.0, "Prasanna_Looks": 5.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 6.0, "Prasanna_Total": 27.0, "Kaushal_Looks": 7.0, "Kaushal_Walk": 8.3, "Kaushal_Conf": 6.7, "Kaushal_Int": 6.0, "Kaushal_Total": 28.0, "3_Judges_Grand_Total": 84.0, "3_Judges_Average": 28.0, "Audit_Notes": null, "4_Judges_Grand_Total": 112.0, "4_Judges_Average": 28.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 053", "Ashritha_Looks": 9.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 35.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 39.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 9.7, "Kaushal_Conf": 9.3, "Kaushal_Int": 9.3, "Kaushal_Total": 38.0, "3_Judges_Grand_Total": 114.0, "3_Judges_Average": 38.0, "Audit_Notes": null, "4_Judges_Grand_Total": 152.0, "4_Judges_Average": 38.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 059", "Ashritha_Looks": 8.0, "Ashritha_Walk": 4.0, "Ashritha_Conf": 3.0, "Ashritha_Int": 2.0, "Ashritha_Total": 17.0, "Eshan_Looks": 8.0, "Eshan_Walk": 6.0, "Eshan_Conf": 5.0, "Eshan_Int": 1.0, "Eshan_Total": 20.0, "Prasanna_Looks": 6.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 6.0, "Prasanna_Total": 26.0, "Kaushal_Looks": 7.3, "Kaushal_Walk": 6.0, "Kaushal_Conf": 4.7, "Kaushal_Int": 3.0, "Kaushal_Total": 21.0, "3_Judges_Grand_Total": 63.0, "3_Judges_Average": 21.0, "Audit_Notes": null, "4_Judges_Grand_Total": 84.0, "4_Judges_Average": 21.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 060", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 36.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 37.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 8.7, "Kaushal_Conf": 10.0, "Kaushal_Int": 10.0, "Kaushal_Total": 37.7, "3_Judges_Grand_Total": 113.0, "3_Judges_Average": 37.67, "Audit_Notes": null, "4_Judges_Grand_Total": 150.7, "4_Judges_Average": 37.67}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 063", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 33.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 10.0, "Eshan_Total": 35.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.7, "Kaushal_Conf": 8.7, "Kaushal_Int": 9.3, "Kaushal_Total": 35.0, "3_Judges_Grand_Total": 105.0, "3_Judges_Average": 35.0, "Audit_Notes": null, "4_Judges_Grand_Total": 140.0, "4_Judges_Average": 35.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 068", "Ashritha_Looks": 9.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 10.0, "Ashritha_Total": 37.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 6.0, "Eshan_Total": 29.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 8.3, "Kaushal_Int": 8.3, "Kaushal_Total": 34.3, "3_Judges_Grand_Total": 103.0, "3_Judges_Average": 34.33, "Audit_Notes": null, "4_Judges_Grand_Total": 137.3, "4_Judges_Average": 34.33}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 069", "Ashritha_Looks": 8.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 10.0, "Ashritha_Total": 33.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 9.0, "Eshan_Total": 36.0, "Prasanna_Looks": 6.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 31.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.0, "Kaushal_Int": 9.0, "Kaushal_Total": 33.3, "3_Judges_Grand_Total": 100.0, "3_Judges_Average": 33.33, "Audit_Notes": "Written as JG/LG 69", "4_Judges_Grand_Total": 133.3, "4_Judges_Average": 33.33}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 074", "Ashritha_Looks": 9.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 8.0, "Ashritha_Total": 31.0, "Eshan_Looks": 9.0, "Eshan_Walk": 7.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 30.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 5.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 6.0, "Prasanna_Total": 26.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 6.3, "Kaushal_Conf": 6.7, "Kaushal_Int": 7.0, "Kaushal_Total": 29.0, "3_Judges_Grand_Total": 87.0, "3_Judges_Average": 29.0, "Audit_Notes": null, "4_Judges_Grand_Total": 116.0, "4_Judges_Average": 29.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 076", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 37.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 38.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 9.0, "Kaushal_Conf": 10.0, "Kaushal_Int": 10.0, "Kaushal_Total": 38.3, "3_Judges_Grand_Total": 115.0, "3_Judges_Average": 38.33, "Audit_Notes": null, "4_Judges_Grand_Total": 153.3, "4_Judges_Average": 38.33}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 077", "Ashritha_Looks": 8.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 8.0, "Ashritha_Total": 32.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 33.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 7.7, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.0, "Kaushal_Total": 33.1, "3_Judges_Grand_Total": 99.0, "3_Judges_Average": 33.0, "Audit_Notes": null, "4_Judges_Grand_Total": 132.1, "4_Judges_Average": 33.02}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 080", "Ashritha_Looks": 10.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 6.0, "Ashritha_Total": 31.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 6.0, "Eshan_Int": 4.0, "Eshan_Total": 29.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 10.0, "Kaushal_Walk": 8.7, "Kaushal_Conf": 7.0, "Kaushal_Int": 6.0, "Kaushal_Total": 31.7, "3_Judges_Grand_Total": 95.0, "3_Judges_Average": 31.67, "Audit_Notes": null, "4_Judges_Grand_Total": 126.7, "4_Judges_Average": 31.68}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 091", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 7.0, "Ashritha_Total": 36.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 35.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 9.7, "Kaushal_Conf": 8.7, "Kaushal_Int": 7.3, "Kaushal_Total": 35.0, "3_Judges_Grand_Total": 105.0, "3_Judges_Average": 35.0, "Audit_Notes": null, "4_Judges_Grand_Total": 140.0, "4_Judges_Average": 35.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 098", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 10.0, "Ashritha_Total": 39.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 10.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.3, "Kaushal_Int": 10.0, "Kaushal_Total": 39.0, "3_Judges_Grand_Total": 117.0, "3_Judges_Average": 39.0, "Audit_Notes": null, "4_Judges_Grand_Total": 156.0, "4_Judges_Average": 39.0}, {"Category": "Little Miss (LG)", "Contestant ID": "LG 072", "Ashritha_Looks": 9.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 5.0, "Ashritha_Int": 3.0, "Ashritha_Total": 24.0, "Eshan_Looks": NaN, "Eshan_Walk": NaN, "Eshan_Conf": NaN, "Eshan_Int": NaN, "Eshan_Total": NaN, "Prasanna_Looks": NaN, "Prasanna_Walk": NaN, "Prasanna_Conf": NaN, "Prasanna_Int": NaN, "Prasanna_Total": NaN, "Kaushal_Looks": 9.0, "Kaushal_Walk": 7.0, "Kaushal_Conf": 5.0, "Kaushal_Int": 3.0, "Kaushal_Total": 24.0, "3_Judges_Grand_Total": 24.0, "3_Judges_Average": 24.0, "Audit_Notes": "Missing scores from Eshan and Prasanna", "4_Judges_Grand_Total": 48.0, "4_Judges_Average": 12.0}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 002", "Ashritha_Looks": 10.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 8.0, "Ashritha_Total": 34.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 9.0, "Eshan_Total": 33.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.7, "Kaushal_Total": 35.0, "3_Judges_Grand_Total": 105.0, "3_Judges_Average": 35.0, "Audit_Notes": null, "4_Judges_Grand_Total": 140.0, "4_Judges_Average": 35.0}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 006", "Ashritha_Looks": 8.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 32.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 35.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 8.3, "Kaushal_Conf": 9.0, "Kaushal_Int": 9.0, "Kaushal_Total": 35.0, "3_Judges_Grand_Total": 105.0, "3_Judges_Average": 35.0, "Audit_Notes": null, "4_Judges_Grand_Total": 140.0, "4_Judges_Average": 35.0}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 008", "Ashritha_Looks": 9.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 10.0, "Ashritha_Total": 37.0, "Eshan_Looks": 9.0, "Eshan_Walk": NaN, "Eshan_Conf": 10.0, "Eshan_Int": 9.0, "Eshan_Total": 28.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 33.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 9.0, "Kaushal_Int": 9.0, "Kaushal_Total": 35.7, "3_Judges_Grand_Total": 98.0, "3_Judges_Average": 32.67, "Audit_Notes": "Eshan Walk score missing", "4_Judges_Grand_Total": 133.7, "4_Judges_Average": 33.42}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 010", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 33.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 7.0, "Eshan_Int": 6.0, "Eshan_Total": 31.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.0, "Kaushal_Conf": 8.3, "Kaushal_Int": 8.3, "Kaushal_Total": 34.6, "3_Judges_Grand_Total": 104.0, "3_Judges_Average": 34.67, "Audit_Notes": null, "4_Judges_Grand_Total": 138.6, "4_Judges_Average": 34.65}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 012", "Ashritha_Looks": 9.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 6.0, "Ashritha_Total": 31.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 6.0, "Eshan_Int": 6.0, "Eshan_Total": 29.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 8.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 7.3, "Kaushal_Int": 6.7, "Kaushal_Total": 31.7, "3_Judges_Grand_Total": 95.0, "3_Judges_Average": 31.67, "Audit_Notes": null, "4_Judges_Grand_Total": 126.7, "4_Judges_Average": 31.68}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 021", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 34.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 34.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 6.0, "Prasanna_Total": 30.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.3, "Kaushal_Int": 8.0, "Kaushal_Total": 32.6, "3_Judges_Grand_Total": 98.0, "3_Judges_Average": 32.67, "Audit_Notes": null, "4_Judges_Grand_Total": 130.6, "4_Judges_Average": 32.65}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 023", "Ashritha_Looks": 10.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 39.0, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 36.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 39.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 9.7, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.0, "Kaushal_Total": 38.1, "3_Judges_Grand_Total": 114.0, "3_Judges_Average": 38.0, "Audit_Notes": null, "4_Judges_Grand_Total": 152.1, "4_Judges_Average": 38.02}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 025", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 7.0, "Ashritha_Total": 32.0, "Eshan_Looks": 8.0, "Eshan_Walk": 9.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 31.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 6.0, "Prasanna_Total": 31.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 8.7, "Kaushal_Conf": 8.0, "Kaushal_Int": 6.7, "Kaushal_Total": 31.4, "3_Judges_Grand_Total": 94.0, "3_Judges_Average": 31.33, "Audit_Notes": null, "4_Judges_Grand_Total": 125.4, "4_Judges_Average": 31.35}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 035", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 10.0, "Ashritha_Total": 36.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 35.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.7, "Kaushal_Total": 35.1, "3_Judges_Grand_Total": 105.0, "3_Judges_Average": 35.0, "Audit_Notes": null, "4_Judges_Grand_Total": 140.1, "4_Judges_Average": 35.02}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 036", "Ashritha_Looks": 8.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 35.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 10.0, "Kaushal_Conf": 8.7, "Kaushal_Int": 9.0, "Kaushal_Total": 36.4, "3_Judges_Grand_Total": 109.0, "3_Judges_Average": 36.33, "Audit_Notes": null, "4_Judges_Grand_Total": 145.4, "4_Judges_Average": 36.35}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 039", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 8.0, "Ashritha_Total": 37.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 34.0, "Prasanna_Looks": 6.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 8.0, "Prasanna_Total": 28.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 9.0, "Kaushal_Conf": 8.0, "Kaushal_Int": 8.0, "Kaushal_Total": 33.0, "3_Judges_Grand_Total": 99.0, "3_Judges_Average": 33.0, "Audit_Notes": null, "4_Judges_Grand_Total": 132.0, "4_Judges_Average": 33.0}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 041", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 5.0, "Ashritha_Total": 29.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 6.0, "Eshan_Total": 30.0, "Prasanna_Looks": 6.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 6.0, "Prasanna_Total": 29.0, "Kaushal_Looks": 7.7, "Kaushal_Walk": 8.7, "Kaushal_Conf": 7.3, "Kaushal_Int": 5.7, "Kaushal_Total": 29.4, "3_Judges_Grand_Total": 88.0, "3_Judges_Average": 29.33, "Audit_Notes": null, "4_Judges_Grand_Total": 117.4, "4_Judges_Average": 29.35}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 043", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 39.0, "Eshan_Looks": 8.0, "Eshan_Walk": 7.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 30.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 10.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.7, "Kaushal_Conf": 8.7, "Kaushal_Int": 9.0, "Kaushal_Total": 34.7, "3_Judges_Grand_Total": 104.0, "3_Judges_Average": 34.67, "Audit_Notes": null, "4_Judges_Grand_Total": 138.7, "4_Judges_Average": 34.67}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 045", "Ashritha_Looks": 8.0, "Ashritha_Walk": 6.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 34.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 36.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 10.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.3, "Kaushal_Conf": 9.3, "Kaushal_Int": 9.7, "Kaushal_Total": 35.6, "3_Judges_Grand_Total": 107.0, "3_Judges_Average": 35.67, "Audit_Notes": null, "4_Judges_Grand_Total": 142.6, "4_Judges_Average": 35.65}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 048", "Ashritha_Looks": 7.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 7.0, "Ashritha_Total": 33.0, "Eshan_Looks": 10.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 32.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 8.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 8.3, "Kaushal_Conf": 9.0, "Kaushal_Int": 7.3, "Kaushal_Total": 33.3, "3_Judges_Grand_Total": 100.0, "3_Judges_Average": 33.33, "Audit_Notes": null, "4_Judges_Grand_Total": 133.3, "4_Judges_Average": 33.33}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 051", "Ashritha_Looks": 7.0, "Ashritha_Walk": 6.0, "Ashritha_Conf": 6.0, "Ashritha_Int": 5.0, "Ashritha_Total": 24.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 33.0, "Prasanna_Looks": 6.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 6.0, "Prasanna_Total": 26.0, "Kaushal_Looks": 7.3, "Kaushal_Walk": 7.3, "Kaushal_Conf": 6.7, "Kaushal_Int": 6.3, "Kaushal_Total": 27.6, "3_Judges_Grand_Total": 83.0, "3_Judges_Average": 27.67, "Audit_Notes": null, "4_Judges_Grand_Total": 110.6, "4_Judges_Average": 27.65}, {"Category": "Little Mister (LB)", "Contestant ID": "LB 059", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 7.0, "Ashritha_Total": 34.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 31.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 6.0, "Prasanna_Total": 31.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 7.7, "Kaushal_Int": 6.7, "Kaushal_Total": 32.1, "3_Judges_Grand_Total": 96.0, "3_Judges_Average": 32.0, "Audit_Notes": null, "4_Judges_Grand_Total": 128.1, "4_Judges_Average": 32.02}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 081", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 38.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 35.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 10.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.0, "Kaushal_Conf": 9.3, "Kaushal_Int": 9.0, "Kaushal_Total": 36.3, "3_Judges_Grand_Total": 109.0, "3_Judges_Average": 36.33, "Audit_Notes": null, "4_Judges_Grand_Total": 145.3, "4_Judges_Average": 36.33}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 098", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 8.0, "Ashritha_Total": 32.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 6.0, "Eshan_Total": 30.0, "Prasanna_Looks": 6.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 8.0, "Prasanna_Total": 33.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.0, "Kaushal_Int": 7.3, "Kaushal_Total": 31.6, "3_Judges_Grand_Total": 95.0, "3_Judges_Average": 31.67, "Audit_Notes": "Written as 098 / 078", "4_Judges_Grand_Total": 126.6, "4_Judges_Average": 31.65}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 004", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 38.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 33.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 33.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.3, "Kaushal_Total": 34.7, "3_Judges_Grand_Total": 104.0, "3_Judges_Average": 34.67, "Audit_Notes": null, "4_Judges_Grand_Total": 138.7, "4_Judges_Average": 34.67}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 061", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 39.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 6.0, "Eshan_Int": 10.0, "Eshan_Total": 36.0, "Prasanna_Looks": 6.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 10.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 10.0, "Kaushal_Conf": 8.3, "Kaushal_Int": 10.0, "Kaushal_Total": 36.6, "3_Judges_Grand_Total": 110.0, "3_Judges_Average": 36.67, "Audit_Notes": null, "4_Judges_Grand_Total": 146.6, "4_Judges_Average": 36.65}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 062", "Ashritha_Looks": 9.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 38.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 39.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.7, "Kaushal_Total": 38.0, "3_Judges_Grand_Total": 114.0, "3_Judges_Average": 38.0, "Audit_Notes": null, "4_Judges_Grand_Total": 152.0, "4_Judges_Average": 38.0}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 035", "Ashritha_Looks": 8.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 38.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 8.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.7, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.3, "Kaushal_Total": 37.7, "3_Judges_Grand_Total": 113.0, "3_Judges_Average": 37.67, "Audit_Notes": null, "4_Judges_Grand_Total": 150.7, "4_Judges_Average": 37.67}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 068", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 36.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 35.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 33.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.7, "Kaushal_Conf": 8.0, "Kaushal_Int": 8.0, "Kaushal_Total": 34.7, "3_Judges_Grand_Total": 104.0, "3_Judges_Average": 34.67, "Audit_Notes": null, "4_Judges_Grand_Total": 138.7, "4_Judges_Average": 34.67}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 013", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.5, "Ashritha_Total": 37.5, "Eshan_Looks": 6.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 31.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 6.0, "Prasanna_Total": 32.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 9.7, "Kaushal_Conf": 8.0, "Kaushal_Int": 7.8, "Kaushal_Total": 33.5, "3_Judges_Grand_Total": 100.5, "3_Judges_Average": 33.5, "Audit_Notes": null, "4_Judges_Grand_Total": 134.0, "4_Judges_Average": 33.5}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 049", "Ashritha_Looks": 8.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 7.0, "Ashritha_Total": 30.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 8.0, "Eshan_Total": 32.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 32.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 7.7, "Kaushal_Conf": 7.7, "Kaushal_Int": 7.7, "Kaushal_Total": 31.4, "3_Judges_Grand_Total": 94.0, "3_Judges_Average": 31.33, "Audit_Notes": null, "4_Judges_Grand_Total": 125.4, "4_Judges_Average": 31.35}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 016", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 40.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 6.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 10.0, "Kaushal_Conf": 10.0, "Kaushal_Int": 10.0, "Kaushal_Total": 38.7, "3_Judges_Grand_Total": 116.0, "3_Judges_Average": 38.67, "Audit_Notes": null, "4_Judges_Grand_Total": 154.7, "4_Judges_Average": 38.67}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 082", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 33.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.7, "Kaushal_Conf": 8.3, "Kaushal_Int": 9.0, "Kaushal_Total": 34.3, "3_Judges_Grand_Total": 103.0, "3_Judges_Average": 34.33, "Audit_Notes": null, "4_Judges_Grand_Total": 137.3, "4_Judges_Average": 34.33}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 058", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 10.0, "Ashritha_Total": 35.0, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 33.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.3, "Kaushal_Conf": 8.0, "Kaushal_Int": 8.7, "Kaushal_Total": 34.7, "3_Judges_Grand_Total": 104.0, "3_Judges_Average": 34.67, "Audit_Notes": null, "4_Judges_Grand_Total": 138.7, "4_Judges_Average": 34.67}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 060", "Ashritha_Looks": 7.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 8.0, "Ashritha_Total": 31.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 33.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 9.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.0, "Kaushal_Int": 8.3, "Kaushal_Total": 32.9, "3_Judges_Grand_Total": 99.0, "3_Judges_Average": 33.0, "Audit_Notes": null, "4_Judges_Grand_Total": 131.9, "4_Judges_Average": 32.98}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 070", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 34.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.3, "Kaushal_Conf": 8.0, "Kaushal_Int": 8.7, "Kaushal_Total": 34.7, "3_Judges_Grand_Total": 104.0, "3_Judges_Average": 34.67, "Audit_Notes": null, "4_Judges_Grand_Total": 138.7, "4_Judges_Average": 34.67}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 080", "Ashritha_Looks": 7.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 34.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 10.0, "Eshan_Int": 8.0, "Eshan_Total": 36.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 8.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 8.7, "Kaushal_Conf": 10.0, "Kaushal_Int": 8.3, "Kaushal_Total": 35.0, "3_Judges_Grand_Total": 105.0, "3_Judges_Average": 35.0, "Audit_Notes": null, "4_Judges_Grand_Total": 140.0, "4_Judges_Average": 35.0}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 066", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 38.0, "Eshan_Looks": 8.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 35.0, "Prasanna_Looks": 6.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 30.0, "Kaushal_Looks": 7.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 9.0, "Kaushal_Int": 8.7, "Kaushal_Total": 34.4, "3_Judges_Grand_Total": 103.0, "3_Judges_Average": 34.33, "Audit_Notes": null, "4_Judges_Grand_Total": 137.4, "4_Judges_Average": 34.35}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 073", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 39.0, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 36.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.7, "Kaushal_Conf": 9.3, "Kaushal_Int": 8.7, "Kaushal_Total": 36.4, "3_Judges_Grand_Total": 109.0, "3_Judges_Average": 36.33, "Audit_Notes": null, "4_Judges_Grand_Total": 145.4, "4_Judges_Average": 36.35}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 020", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 39.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.7, "Kaushal_Total": 38.7, "3_Judges_Grand_Total": 116.0, "3_Judges_Average": 38.67, "Audit_Notes": null, "4_Judges_Grand_Total": 154.7, "4_Judges_Average": 38.67}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 048", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 37.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 31.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 8.7, "Kaushal_Conf": 9.0, "Kaushal_Int": 8.7, "Kaushal_Total": 35.1, "3_Judges_Grand_Total": 105.0, "3_Judges_Average": 35.0, "Audit_Notes": null, "4_Judges_Grand_Total": 140.1, "4_Judges_Average": 35.02}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 012", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 37.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 37.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 8.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.3, "Kaushal_Int": 9.0, "Kaushal_Total": 36.6, "3_Judges_Grand_Total": 110.0, "3_Judges_Average": 36.67, "Audit_Notes": null, "4_Judges_Grand_Total": 146.6, "4_Judges_Average": 36.65}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 052", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 8.0, "Ashritha_Total": 35.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 10.0, "Eshan_Int": 9.0, "Eshan_Total": 35.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 8.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.7, "Kaushal_Conf": 9.7, "Kaushal_Int": 8.3, "Kaushal_Total": 35.0, "3_Judges_Grand_Total": 105.0, "3_Judges_Average": 35.0, "Audit_Notes": null, "4_Judges_Grand_Total": 140.0, "4_Judges_Average": 35.0}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 079", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 36.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 37.0, "Prasanna_Looks": 6.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 6.0, "Prasanna_Total": 30.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 9.0, "Kaushal_Conf": 9.0, "Kaushal_Int": 8.3, "Kaushal_Total": 34.3, "3_Judges_Grand_Total": 103.0, "3_Judges_Average": 34.33, "Audit_Notes": null, "4_Judges_Grand_Total": 137.3, "4_Judges_Average": 34.33}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 031", "Ashritha_Looks": 7.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 34.0, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 9.0, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.0, "Kaushal_Total": 34.0, "3_Judges_Grand_Total": 102.0, "3_Judges_Average": 34.0, "Audit_Notes": "On Junior Mr sheet in Ash/Esh", "4_Judges_Grand_Total": 136.0, "4_Judges_Average": 34.0}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 032", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.5, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 37.5, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.5, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.3, "Kaushal_Total": 35.2, "3_Judges_Grand_Total": 105.5, "3_Judges_Average": 35.17, "Audit_Notes": "On Junior Mr sheet in Ash/Esh", "4_Judges_Grand_Total": 140.7, "4_Judges_Average": 35.17}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 076", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 37.0, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 9.0, "Eshan_Total": 38.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 8.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.0, "Kaushal_Total": 37.0, "3_Judges_Grand_Total": 111.0, "3_Judges_Average": 37.0, "Audit_Notes": "On Junior Mr sheet in Ash/Esh", "4_Judges_Grand_Total": 148.0, "4_Judges_Average": 37.0}, {"Category": "Junior Miss (JG)", "Contestant ID": "JG 030", "Ashritha_Looks": 9.0, "Ashritha_Walk": 6.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 8.0, "Ashritha_Total": 31.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 7.0, "Eshan_Total": 33.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 8.0, "Kaushal_Conf": 8.3, "Kaushal_Int": 8.0, "Kaushal_Total": 33.3, "3_Judges_Grand_Total": 100.0, "3_Judges_Average": 33.33, "Audit_Notes": "On plain paper in Ash", "4_Judges_Grand_Total": 133.3, "4_Judges_Average": 33.33}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 001", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 36.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 31.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.3, "Kaushal_Int": 8.0, "Kaushal_Total": 33.6, "3_Judges_Grand_Total": 101.0, "3_Judges_Average": 33.67, "Audit_Notes": "Prasanna written 011/001", "4_Judges_Grand_Total": 134.6, "4_Judges_Average": 33.65}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 006", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 39.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 9.0, "Eshan_Total": 39.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 33.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 9.7, "Kaushal_Conf": 9.3, "Kaushal_Int": 8.7, "Kaushal_Total": 37.0, "3_Judges_Grand_Total": 111.0, "3_Judges_Average": 37.0, "Audit_Notes": null, "4_Judges_Grand_Total": 148.0, "4_Judges_Average": 37.0}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 010", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 8.0, "Ashritha_Total": 32.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 39.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 32.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.7, "Kaushal_Total": 34.4, "3_Judges_Grand_Total": 103.0, "3_Judges_Average": 34.33, "Audit_Notes": null, "4_Judges_Grand_Total": 137.4, "4_Judges_Average": 34.35}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 033", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.5, "Ashritha_Conf": 8.0, "Ashritha_Int": 8.0, "Ashritha_Total": 33.5, "Eshan_Looks": 9.0, "Eshan_Walk": 7.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 31.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 8.2, "Kaushal_Conf": 8.0, "Kaushal_Int": 7.7, "Kaushal_Total": 32.9, "3_Judges_Grand_Total": 98.5, "3_Judges_Average": 32.83, "Audit_Notes": null, "4_Judges_Grand_Total": 131.4, "4_Judges_Average": 32.85}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 029", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 34.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 6.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 8.0, "Prasanna_Total": 29.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 7.7, "Kaushal_Conf": 7.3, "Kaushal_Int": 8.3, "Kaushal_Total": 32.3, "3_Judges_Grand_Total": 97.0, "3_Judges_Average": 32.33, "Audit_Notes": null, "4_Judges_Grand_Total": 129.3, "4_Judges_Average": 32.33}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 039", "Ashritha_Looks": 7.0, "Ashritha_Walk": 6.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 6.0, "Ashritha_Total": 26.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 31.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 33.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 7.3, "Kaushal_Conf": 7.7, "Kaushal_Int": 7.0, "Kaushal_Total": 30.0, "3_Judges_Grand_Total": 90.0, "3_Judges_Average": 30.0, "Audit_Notes": null, "4_Judges_Grand_Total": 120.0, "4_Judges_Average": 30.0}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 036", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 8.0, "Ashritha_Total": 33.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 33.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.0, "Kaushal_Int": 8.0, "Kaushal_Total": 33.3, "3_Judges_Grand_Total": 100.0, "3_Judges_Average": 33.33, "Audit_Notes": null, "4_Judges_Grand_Total": 133.3, "4_Judges_Average": 33.33}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 009", "Ashritha_Looks": 7.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 36.0, "Eshan_Looks": 8.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 33.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 8.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 9.7, "Kaushal_Conf": 9.0, "Kaushal_Int": 8.3, "Kaushal_Total": 35.0, "3_Judges_Grand_Total": 105.0, "3_Judges_Average": 35.0, "Audit_Notes": null, "4_Judges_Grand_Total": 140.0, "4_Judges_Average": 35.0}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 019", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 7.0, "Ashritha_Total": 32.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 32.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 10.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 8.7, "Kaushal_Conf": 8.3, "Kaushal_Int": 8.0, "Kaushal_Total": 34.0, "3_Judges_Grand_Total": 102.0, "3_Judges_Average": 34.0, "Audit_Notes": null, "4_Judges_Grand_Total": 136.0, "4_Judges_Average": 34.0}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 025", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.5, "Ashritha_Total": 36.5, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 30.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.7, "Kaushal_Conf": 9.0, "Kaushal_Int": 8.5, "Kaushal_Total": 34.5, "3_Judges_Grand_Total": 103.5, "3_Judges_Average": 34.5, "Audit_Notes": null, "4_Judges_Grand_Total": 138.0, "4_Judges_Average": 34.5}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 044", "Ashritha_Looks": 7.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 8.0, "Ashritha_Total": 33.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 32.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 10.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.7, "Kaushal_Conf": 8.3, "Kaushal_Int": 8.3, "Kaushal_Total": 33.6, "3_Judges_Grand_Total": 101.0, "3_Judges_Average": 33.67, "Audit_Notes": null, "4_Judges_Grand_Total": 134.6, "4_Judges_Average": 33.65}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 023", "Ashritha_Looks": 8.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 38.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.7, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.7, "Kaushal_Total": 35.8, "3_Judges_Grand_Total": 107.0, "3_Judges_Average": 35.67, "Audit_Notes": null, "4_Judges_Grand_Total": 142.8, "4_Judges_Average": 35.7}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 028", "Ashritha_Looks": 8.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 8.0, "Ashritha_Total": 36.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 35.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.3, "Kaushal_Int": 8.3, "Kaushal_Total": 35.6, "3_Judges_Grand_Total": 107.0, "3_Judges_Average": 35.67, "Audit_Notes": null, "4_Judges_Grand_Total": 142.6, "4_Judges_Average": 35.65}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 021", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 8.0, "Ashritha_Total": 37.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 38.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 10.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.3, "Kaushal_Total": 37.3, "3_Judges_Grand_Total": 112.0, "3_Judges_Average": 37.33, "Audit_Notes": null, "4_Judges_Grand_Total": 149.3, "4_Judges_Average": 37.33}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 016", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 7.0, "Ashritha_Total": 30.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 30.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.0, "Kaushal_Int": 7.7, "Kaushal_Total": 32.7, "3_Judges_Grand_Total": 98.0, "3_Judges_Average": 32.67, "Audit_Notes": null, "4_Judges_Grand_Total": 130.7, "4_Judges_Average": 32.67}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 011", "Ashritha_Looks": 8.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 35.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 30.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 8.0, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.7, "Kaushal_Total": 34.1, "3_Judges_Grand_Total": 102.0, "3_Judges_Average": 34.0, "Audit_Notes": null, "4_Judges_Grand_Total": 136.1, "4_Judges_Average": 34.02}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 038", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 8.0, "Ashritha_Total": 34.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 5.0, "Eshan_Int": 6.0, "Eshan_Total": 28.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 8.0, "Prasanna_Total": 30.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.3, "Kaushal_Conf": 6.7, "Kaushal_Int": 7.3, "Kaushal_Total": 30.6, "3_Judges_Grand_Total": 92.0, "3_Judges_Average": 30.67, "Audit_Notes": null, "4_Judges_Grand_Total": 122.6, "4_Judges_Average": 30.65}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 008", "Ashritha_Looks": 7.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 7.0, "Ashritha_Total": 31.0, "Eshan_Looks": 7.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 7.0, "Eshan_Total": 31.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 8.0, "Prasanna_Total": 33.0, "Kaushal_Looks": 7.3, "Kaushal_Walk": 8.0, "Kaushal_Conf": 9.0, "Kaushal_Int": 7.3, "Kaushal_Total": 31.6, "3_Judges_Grand_Total": 95.0, "3_Judges_Average": 31.67, "Audit_Notes": null, "4_Judges_Grand_Total": 126.6, "4_Judges_Average": 31.65}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 031", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 34.0, "Eshan_Looks": 8.0, "Eshan_Walk": 7.0, "Eshan_Conf": 8.0, "Eshan_Int": 6.0, "Eshan_Total": 29.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 8.0, "Kaushal_Conf": 8.3, "Kaushal_Int": 8.0, "Kaushal_Total": 33.0, "3_Judges_Grand_Total": 99.0, "3_Judges_Average": 33.0, "Audit_Notes": null, "4_Judges_Grand_Total": 132.0, "4_Judges_Average": 33.0}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 035", "Ashritha_Looks": 9.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 7.0, "Ashritha_Total": 31.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 6.0, "Eshan_Int": 7.0, "Eshan_Total": 30.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 8.7, "Kaushal_Conf": 7.0, "Kaushal_Int": 7.3, "Kaushal_Total": 32.0, "3_Judges_Grand_Total": 96.0, "3_Judges_Average": 32.0, "Audit_Notes": null, "4_Judges_Grand_Total": 128.0, "4_Judges_Average": 32.0}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 014", "Ashritha_Looks": 7.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 7.0, "Ashritha_Total": 29.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 31.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.0, "Kaushal_Conf": 8.0, "Kaushal_Int": 7.7, "Kaushal_Total": 32.0, "3_Judges_Grand_Total": 96.0, "3_Judges_Average": 32.0, "Audit_Notes": null, "4_Judges_Grand_Total": 128.0, "4_Judges_Average": 32.0}, {"Category": "Junior Mister (JB)", "Contestant ID": "JB 030", "Ashritha_Looks": 9.0, "Ashritha_Walk": 6.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 8.0, "Ashritha_Total": 31.0, "Eshan_Looks": 9.0, "Eshan_Walk": 7.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 30.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 7.7, "Kaushal_Conf": 7.7, "Kaushal_Int": 8.0, "Kaushal_Total": 32.4, "3_Judges_Grand_Total": 97.0, "3_Judges_Average": 32.33, "Audit_Notes": "Scored on plain loose sheet overlay by Ashritha and Eshan; Prasanna written 020/030", "4_Judges_Grand_Total": 129.4, "4_Judges_Average": 32.35}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 039", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 40.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 34.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.3, "Kaushal_Total": 38.0, "3_Judges_Grand_Total": 114.0, "3_Judges_Average": 38.0, "Audit_Notes": null, "4_Judges_Grand_Total": 152.0, "4_Judges_Average": 38.0}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 006", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 8.0, "Ashritha_Total": 37.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 36.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 9.7, "Kaushal_Conf": 9.3, "Kaushal_Int": 8.3, "Kaushal_Total": 37.0, "3_Judges_Grand_Total": 111.0, "3_Judges_Average": 37.0, "Audit_Notes": null, "4_Judges_Grand_Total": 148.0, "4_Judges_Average": 37.0}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 049", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 36.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 36.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 9.3, "Kaushal_Int": 9.0, "Kaushal_Total": 36.0, "3_Judges_Grand_Total": 108.0, "3_Judges_Average": 36.0, "Audit_Notes": null, "4_Judges_Grand_Total": 144.0, "4_Judges_Average": 36.0}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 015", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 39.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 9.0, "Eshan_Total": 39.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 10.0, "Kaushal_Walk": 10.0, "Kaushal_Conf": 10.0, "Kaushal_Int": 9.3, "Kaushal_Total": 39.3, "3_Judges_Grand_Total": 118.0, "3_Judges_Average": 39.33, "Audit_Notes": null, "4_Judges_Grand_Total": 157.3, "4_Judges_Average": 39.33}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 059", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 8.0, "Ashritha_Total": 33.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 9.0, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.7, "Kaushal_Total": 34.7, "3_Judges_Grand_Total": 104.0, "3_Judges_Average": 34.67, "Audit_Notes": null, "4_Judges_Grand_Total": 138.7, "4_Judges_Average": 34.67}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 009", "Ashritha_Looks": 8.5, "Ashritha_Walk": 9.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 8.0, "Ashritha_Total": 34.5, "Eshan_Looks": 8.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.5, "Kaushal_Walk": 9.0, "Kaushal_Conf": 9.0, "Kaushal_Int": 8.3, "Kaushal_Total": 34.8, "3_Judges_Grand_Total": 104.5, "3_Judges_Average": 34.83, "Audit_Notes": null, "4_Judges_Grand_Total": 139.3, "4_Judges_Average": 34.83}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 058", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 39.0, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 39.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.7, "Kaushal_Total": 38.4, "3_Judges_Grand_Total": 115.0, "3_Judges_Average": 38.33, "Audit_Notes": null, "4_Judges_Grand_Total": 153.4, "4_Judges_Average": 38.35}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 054", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 39.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 38.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.7, "Kaushal_Total": 39.1, "3_Judges_Grand_Total": 117.0, "3_Judges_Average": 39.0, "Audit_Notes": null, "4_Judges_Grand_Total": 156.1, "4_Judges_Average": 39.02}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 035", "Ashritha_Looks": 8.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 7.0, "Ashritha_Total": 30.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 9.0, "Eshan_Total": 33.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 9.0, "Prasanna_Total": 35.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.0, "Kaushal_Conf": 8.0, "Kaushal_Int": 8.3, "Kaushal_Total": 32.6, "3_Judges_Grand_Total": 98.0, "3_Judges_Average": 32.67, "Audit_Notes": null, "4_Judges_Grand_Total": 130.6, "4_Judges_Average": 32.65}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 030", "Ashritha_Looks": 9.5, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 39.5, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 10.0, "Eshan_Int": 9.0, "Eshan_Total": 37.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 9.5, "Kaushal_Walk": 9.7, "Kaushal_Conf": 10.0, "Kaushal_Int": 9.7, "Kaushal_Total": 38.9, "3_Judges_Grand_Total": 116.5, "3_Judges_Average": 38.83, "Audit_Notes": null, "4_Judges_Grand_Total": 155.4, "4_Judges_Average": 38.85}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 044", "Ashritha_Looks": 8.5, "Ashritha_Walk": 9.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 9.0, "Ashritha_Total": 35.5, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 37.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.8, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.0, "Kaushal_Int": 9.0, "Kaushal_Total": 36.1, "3_Judges_Grand_Total": 108.5, "3_Judges_Average": 36.17, "Audit_Notes": null, "4_Judges_Grand_Total": 144.6, "4_Judges_Average": 36.15}, {"Category": "Pre-teen Girls (PG / Teen Miss)", "Contestant ID": "PG 046", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 40.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 40.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 10.0, "Kaushal_Walk": 10.0, "Kaushal_Conf": 10.0, "Kaushal_Int": 10.0, "Kaushal_Total": 40.0, "3_Judges_Grand_Total": 120.0, "3_Judges_Average": 40.0, "Audit_Notes": "PERFECT 120/120", "4_Judges_Grand_Total": 160.0, "4_Judges_Average": 40.0}, {"Category": "Pre-teen Boys (PB)", "Contestant ID": "PB 023", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 10.0, "Ashritha_Total": 35.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 32.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.7, "Kaushal_Total": 33.7, "3_Judges_Grand_Total": 101.0, "3_Judges_Average": 33.67, "Audit_Notes": null, "4_Judges_Grand_Total": 134.7, "4_Judges_Average": 33.67}, {"Category": "Pre-teen Boys (PB)", "Contestant ID": "PB 004", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 8.0, "Ashritha_Total": 36.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 33.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 9.0, "Kaushal_Conf": 9.3, "Kaushal_Int": 8.3, "Kaushal_Total": 34.9, "3_Judges_Grand_Total": 105.0, "3_Judges_Average": 35.0, "Audit_Notes": null, "4_Judges_Grand_Total": 139.9, "4_Judges_Average": 34.98}, {"Category": "Pre-teen Boys (PB)", "Contestant ID": "PB 012", "Ashritha_Looks": 8.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 8.0, "Ashritha_Total": 30.0, "Eshan_Looks": 8.0, "Eshan_Walk": 7.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 30.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 32.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 7.3, "Kaushal_Conf": 7.7, "Kaushal_Int": 7.7, "Kaushal_Total": 30.7, "3_Judges_Grand_Total": 92.0, "3_Judges_Average": 30.67, "Audit_Notes": null, "4_Judges_Grand_Total": 122.7, "4_Judges_Average": 30.68}, {"Category": "Pre-teen Boys (PB)", "Contestant ID": "PB 021", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 10.0, "Ashritha_Total": 38.0, "Eshan_Looks": 10.0, "Eshan_Walk": 10.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 38.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 9.3, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.0, "Kaushal_Int": 9.3, "Kaushal_Total": 37.6, "3_Judges_Grand_Total": 113.0, "3_Judges_Average": 37.67, "Audit_Notes": null, "4_Judges_Grand_Total": 150.6, "4_Judges_Average": 37.65}, {"Category": "Pre-teen Boys (PB)", "Contestant ID": "PB 018", "Ashritha_Looks": 8.0, "Ashritha_Walk": 7.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 7.0, "Ashritha_Total": 30.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 33.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 8.3, "Kaushal_Conf": 9.0, "Kaushal_Int": 8.3, "Kaushal_Total": 34.3, "3_Judges_Grand_Total": 103.0, "3_Judges_Average": 34.33, "Audit_Notes": null, "4_Judges_Grand_Total": 137.3, "4_Judges_Average": 34.33}, {"Category": "Pre-teen Boys (PB)", "Contestant ID": "PB 014", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 8.0, "Ashritha_Total": 31.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 32.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.3, "Kaushal_Conf": 7.7, "Kaushal_Int": 8.0, "Kaushal_Total": 32.3, "3_Judges_Grand_Total": 97.0, "3_Judges_Average": 32.33, "Audit_Notes": null, "4_Judges_Grand_Total": 129.3, "4_Judges_Average": 32.33}, {"Category": "Pre-teen Boys (PB)", "Contestant ID": "PB 022", "Ashritha_Looks": 8.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 35.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 30.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 6.0, "Prasanna_Int": 8.0, "Prasanna_Total": 30.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 8.7, "Kaushal_Conf": 7.0, "Kaushal_Int": 8.0, "Kaushal_Total": 31.7, "3_Judges_Grand_Total": 95.0, "3_Judges_Average": 31.67, "Audit_Notes": null, "4_Judges_Grand_Total": 126.7, "4_Judges_Average": 31.68}, {"Category": "Pre-teen Boys (PB)", "Contestant ID": "PB 020", "Ashritha_Looks": 8.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 8.0, "Ashritha_Total": 36.0, "Eshan_Looks": 8.0, "Eshan_Walk": 7.0, "Eshan_Conf": 7.0, "Eshan_Int": 7.0, "Eshan_Total": 29.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 34.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 9.0, "Kaushal_Conf": 8.3, "Kaushal_Int": 7.7, "Kaushal_Total": 33.0, "3_Judges_Grand_Total": 99.0, "3_Judges_Average": 33.0, "Audit_Notes": null, "4_Judges_Grand_Total": 132.0, "4_Judges_Average": 33.0}, {"Category": "Pre-teen Boys (PB)", "Contestant ID": "PB 024", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 9.0, "Ashritha_Total": 32.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 6.0, "Eshan_Int": 6.0, "Eshan_Total": 28.0, "Prasanna_Looks": 8.0, "Prasanna_Walk": 8.0, "Prasanna_Conf": 8.0, "Prasanna_Int": 8.0, "Prasanna_Total": 32.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 8.0, "Kaushal_Conf": 7.0, "Kaushal_Int": 7.7, "Kaushal_Total": 30.7, "3_Judges_Grand_Total": 92.0, "3_Judges_Average": 30.67, "Audit_Notes": "Prasanna scores filled", "4_Judges_Grand_Total": 122.7, "4_Judges_Average": 30.68}, {"Category": "Teen Girls (TG / Miss Teen)", "Contestant ID": "TG 015", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 9.5, "Ashritha_Int": 10.0, "Ashritha_Total": 38.5, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 37.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.5, "Kaushal_Int": 9.3, "Kaushal_Total": 37.8, "3_Judges_Grand_Total": 113.5, "3_Judges_Average": 37.83, "Audit_Notes": "Prasanna labeled TG-045", "4_Judges_Grand_Total": 151.3, "4_Judges_Average": 37.83}, {"Category": "Teen Girls (TG / Miss Teen)", "Contestant ID": "TG 013", "Ashritha_Looks": 8.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 10.0, "Ashritha_Total": 37.0, "Eshan_Looks": 9.0, "Eshan_Walk": 10.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 36.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 10.0, "Kaushal_Conf": 9.3, "Kaushal_Int": 9.0, "Kaushal_Total": 37.0, "3_Judges_Grand_Total": 111.0, "3_Judges_Average": 37.0, "Audit_Notes": null, "4_Judges_Grand_Total": 148.0, "4_Judges_Average": 37.0}, {"Category": "Teen Girls (TG / Miss Teen)", "Contestant ID": "TG 014", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 10.0, "Ashritha_Total": 36.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 34.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.3, "Kaushal_Conf": 8.7, "Kaushal_Int": 9.0, "Kaushal_Total": 36.0, "3_Judges_Grand_Total": 108.0, "3_Judges_Average": 36.0, "Audit_Notes": null, "4_Judges_Grand_Total": 144.0, "4_Judges_Average": 36.0}, {"Category": "Teen Girls (TG / Miss Teen)", "Contestant ID": "TG 002", "Ashritha_Looks": 7.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 9.0, "Ashritha_Total": 34.0, "Eshan_Looks": 8.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 32.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 8.0, "Kaushal_Walk": 9.3, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.3, "Kaushal_Total": 34.3, "3_Judges_Grand_Total": 103.0, "3_Judges_Average": 34.33, "Audit_Notes": null, "4_Judges_Grand_Total": 137.3, "4_Judges_Average": 34.33}, {"Category": "Teen Girls (TG / Miss Teen)", "Contestant ID": "TG 001", "Ashritha_Looks": 9.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 37.0, "Eshan_Looks": 8.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 35.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.3, "Kaushal_Total": 37.3, "3_Judges_Grand_Total": 112.0, "3_Judges_Average": 37.33, "Audit_Notes": null, "4_Judges_Grand_Total": 149.3, "4_Judges_Average": 37.33}, {"Category": "Teen Girls (TG / Miss Teen)", "Contestant ID": "TG 019", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 10.0, "Ashritha_Total": 38.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 8.0, "Eshan_Total": 32.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 37.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 9.0, "Kaushal_Conf": 9.0, "Kaushal_Int": 9.0, "Kaushal_Total": 35.7, "3_Judges_Grand_Total": 107.0, "3_Judges_Average": 35.67, "Audit_Notes": null, "4_Judges_Grand_Total": 142.7, "4_Judges_Average": 35.67}, {"Category": "Teen Girls (TG / Miss Teen)", "Contestant ID": "TG 018", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 8.0, "Ashritha_Total": 33.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 33.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.0, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.0, "Kaushal_Total": 34.7, "3_Judges_Grand_Total": 104.0, "3_Judges_Average": 34.67, "Audit_Notes": null, "4_Judges_Grand_Total": 138.7, "4_Judges_Average": 34.67}, {"Category": "Teen Girls (TG / Miss Teen)", "Contestant ID": "TG 005", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 7.0, "Ashritha_Int": 8.0, "Ashritha_Total": 31.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 31.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 8.3, "Kaushal_Conf": 8.0, "Kaushal_Int": 8.0, "Kaushal_Total": 32.6, "3_Judges_Grand_Total": 98.0, "3_Judges_Average": 32.67, "Audit_Notes": null, "4_Judges_Grand_Total": 130.6, "4_Judges_Average": 32.65}, {"Category": "Teen Girls (TG / Miss Teen)", "Contestant ID": "TG 023", "Ashritha_Looks": 10.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 38.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 10.0, "Eshan_Int": 9.0, "Eshan_Total": 38.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 10.0, "Kaushal_Walk": 9.0, "Kaushal_Conf": 10.0, "Kaushal_Int": 9.7, "Kaushal_Total": 38.7, "3_Judges_Grand_Total": 116.0, "3_Judges_Average": 38.67, "Audit_Notes": null, "4_Judges_Grand_Total": 154.7, "4_Judges_Average": 38.67}, {"Category": "Teen Boys (TB)", "Contestant ID": "TB 015", "Ashritha_Looks": 8.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 9.0, "Ashritha_Total": 36.0, "Eshan_Looks": 8.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 8.3, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.7, "Kaushal_Int": 8.7, "Kaushal_Total": 36.0, "3_Judges_Grand_Total": 108.0, "3_Judges_Average": 36.0, "Audit_Notes": null, "4_Judges_Grand_Total": 144.0, "4_Judges_Average": 36.0}, {"Category": "Teen Boys (TB)", "Contestant ID": "TB 008", "Ashritha_Looks": 10.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 8.0, "Ashritha_Total": 36.0, "Eshan_Looks": 10.0, "Eshan_Walk": 9.0, "Eshan_Conf": 9.0, "Eshan_Int": 9.0, "Eshan_Total": 37.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 9.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 36.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 9.3, "Kaushal_Conf": 8.7, "Kaushal_Int": 8.7, "Kaushal_Total": 36.4, "3_Judges_Grand_Total": 109.0, "3_Judges_Average": 36.33, "Audit_Notes": null, "4_Judges_Grand_Total": 145.4, "4_Judges_Average": 36.35}, {"Category": "Teen Boys (TB)", "Contestant ID": "TB 002", "Ashritha_Looks": 9.0, "Ashritha_Walk": 10.0, "Ashritha_Conf": 9.0, "Ashritha_Int": 9.0, "Ashritha_Total": 37.0, "Eshan_Looks": 8.0, "Eshan_Walk": 8.0, "Eshan_Conf": 8.0, "Eshan_Int": 7.0, "Eshan_Total": 31.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 10.0, "Prasanna_Total": 40.0, "Kaushal_Looks": 9.0, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.0, "Kaushal_Int": 8.7, "Kaushal_Total": 36.0, "3_Judges_Grand_Total": 108.0, "3_Judges_Average": 36.0, "Audit_Notes": null, "4_Judges_Grand_Total": 144.0, "4_Judges_Average": 36.0}, {"Category": "Teen Boys (TB)", "Contestant ID": "TB 014", "Ashritha_Looks": 10.0, "Ashritha_Walk": 9.0, "Ashritha_Conf": 10.0, "Ashritha_Int": 10.0, "Ashritha_Total": 39.0, "Eshan_Looks": 9.0, "Eshan_Walk": 9.0, "Eshan_Conf": 10.0, "Eshan_Int": 10.0, "Eshan_Total": 38.0, "Prasanna_Looks": 10.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 9.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 9.7, "Kaushal_Walk": 9.3, "Kaushal_Conf": 9.7, "Kaushal_Int": 9.7, "Kaushal_Total": 38.4, "3_Judges_Grand_Total": 115.0, "3_Judges_Average": 38.33, "Audit_Notes": null, "4_Judges_Grand_Total": 153.4, "4_Judges_Average": 38.35}, {"Category": "Teen Boys (TB)", "Contestant ID": "TB 001", "Ashritha_Looks": 8.0, "Ashritha_Walk": 8.0, "Ashritha_Conf": 8.0, "Ashritha_Int": 10.0, "Ashritha_Total": 34.0, "Eshan_Looks": 9.0, "Eshan_Walk": 8.0, "Eshan_Conf": 9.0, "Eshan_Int": 8.0, "Eshan_Total": 34.0, "Prasanna_Looks": 9.0, "Prasanna_Walk": 10.0, "Prasanna_Conf": 10.0, "Prasanna_Int": 9.0, "Prasanna_Total": 38.0, "Kaushal_Looks": 8.7, "Kaushal_Walk": 8.7, "Kaushal_Conf": 9.0, "Kaushal_Int": 9.0, "Kaushal_Total": 35.4, "3_Judges_Grand_Total": 106.0, "3_Judges_Average": 35.33, "Audit_Notes": "Prasanna labeled 031", "4_Judges_Grand_Total": 141.4, "4_Judges_Average": 35.35}];
+    let currentCategory = 'ALL';
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.getAttribute('onclick').includes(cat)) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      render();
+    }
+
+    function render() {
+      const q = document.getElementById('searchInput').value.trim().toUpperCase();
+      const sort = document.getElementById('sortSelect').value;
+
+      let filtered = DATA.filter(d => {
+        const matchCat = (currentCategory === 'ALL' || d.Category === currentCategory);
+        const matchQ = (!q || d['Contestant ID'].toUpperCase().includes(q) || d.Category.toUpperCase().includes(q));
+        return matchCat && matchQ;
+      });
+
+      if (sort === 'score_desc') {
+        filtered.sort((a,b) => b['4_Judges_Grand_Total'] - a['4_Judges_Grand_Total']);
+      } else if (sort === 'kaushal_desc') {
+        filtered.sort((a,b) => (b.Kaushal_Total || 0) - (a.Kaushal_Total || 0));
+      } else if (sort === 'score_asc') {
+        filtered.sort((a,b) => a['4_Judges_Grand_Total'] - b['4_Judges_Grand_Total']);
+      } else if (sort === 'id_asc') {
+        filtered.sort((a,b) => a['Contestant ID'].localeCompare(b['Contestant ID']));
+      }
+
+      // Render Podium (Top 3 of filtered)
+      const top3 = filtered.slice(0, 3);
+      const podiumEl = document.getElementById('podiumContainer');
+      if (top3.length === 0) {
+        podiumEl.innerHTML = '<div style="color: var(--text-muted); font-size: 14px;">No contestants match current filter.</div>';
+      } else {
+        podiumEl.innerHTML = top3.map((item, idx) => {
+          const rank = idx + 1;
+          const badgeClass = rank === 1 ? 'badge-rank-1' : (rank === 2 ? 'badge-rank-2' : 'badge-rank-3');
+          const cardClass = rank === 1 ? 'podium-1' : (rank === 2 ? 'podium-2' : 'podium-3');
+          const title = rank === 1 ? '🥇 Rank 1 Leader' : (rank === 2 ? '🥈 Rank 2 Finalist' : '🥉 Rank 3 Finalist');
+          return `
+            <div class="podium-card ${cardClass}" onclick="showDetails('${item['Contestant ID']}')">
+              <div class="podium-header">
+                <span class="podium-badge ${badgeClass}">${title}</span>
+                <span style="font-size: 12px; color: var(--gold-light); font-weight: 700;">Kaushal Score: ${item.Kaushal_Total}</span>
+              </div>
+              <div class="podium-id">${item['Contestant ID']}</div>
+              <div class="podium-sub">${item.Category}</div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 14px;">
+                <div>
+                  <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Grand Total</div>
+                  <div class="podium-score">${item['4_Judges_Grand_Total'].toFixed(1)}</div>
+                </div>
+                <button class="btn-action-view" onclick="event.stopPropagation(); showDetails('${item['Contestant ID']}')">View Scores</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Render Table Rows
+      const tbody = document.getElementById('tableBody');
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 40px; color: var(--text-muted);">No contestants found matching query.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map((r, i) => {
+        const rank = i + 1;
+        const rankClass = rank === 1 ? 'rank-1' : (rank === 2 ? 'rank-2' : (rank === 3 ? 'rank-3' : 'rank-default'));
+        const isPerfect = r['4_Judges_Grand_Total'] === 160.0;
+
+        return `
+          <tr onclick="showDetails('${r['Contestant ID']}')">
+            <td style="text-align: center;">
+              <span class="rank-pill ${rankClass}">${rank}</span>
+            </td>
+            <td>
+              <div class="contestant-tag">${r['Contestant ID']} ${isPerfect ? '<span class="perfect-tag">★ PERFECT 160</span>' : ''}</div>
+            </td>
+            <td><span class="category-sub">${r.Category}</span></td>
+            <!-- KAUSHAL MANDA HIGHLIGHTED FIRST -->
+            <td class="td-vip">
+              <span>${r.Kaushal_Total}</span>
+              <div style="font-size: 10px; color: rgba(254, 240, 138, 0.7); font-weight: 600;">/ 40.0</div>
+            </td>
+            <td style="text-align: center; color: #cbd5e1;">${r.Ashritha_Total}</td>
+            <td style="text-align: center; color: #cbd5e1;">${r.Eshan_Total || '-'}</td>
+            <td style="text-align: center; color: #cbd5e1;">${r.Prasanna_Total || '-'}</td>
+            <td style="text-align: right; padding-right: 24px;">
+              <span class="score-badge">${r['4_Judges_Grand_Total'].toFixed(1)}</span>
+              <div style="font-size: 10px; color: var(--text-muted);">out of 160</div>
+            </td>
+            <td style="text-align: center;" onclick="event.stopPropagation()">
+              <button class="btn-action-view" onclick="showDetails('${r['Contestant ID']}')">View</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function showDetails(id) {
+      const item = DATA.find(x => x['Contestant ID'] === id);
+      if (!item) return;
+      document.getElementById('modalId').textContent = item['Contestant ID'];
+      document.getElementById('modalCategory').textContent = item.Category;
+
+      const html = `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 16px; margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="color: var(--text-muted); font-size: 13px; font-weight: 600;">4-Judges Grand Total:</span>
+            <span style="font-size: 26px; font-weight: 900; color: var(--gold-light);">${item['4_Judges_Grand_Total'].toFixed(1)} <span style="font-size: 14px; color: var(--text-muted);">/ 160</span></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: var(--text-muted); font-size: 13px;">4-Judges Average:</span>
+            <span style="font-weight: 700; color: #fff;">${item['4_Judges_Average']} / 40</span>
+          </div>
+        </div>
+
+        <h4 style="font-size: 12px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; font-weight: 800; letter-spacing: 0.5px;">Official Judge Scores (Looks / Walk / Confidence / Interaction)</h4>
+        
+        <!-- KAUSHAL MANDA HIGHLIGHTED FIRST IN MODAL -->
+        <div class="breakdown-vip">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="color: #fef08a; font-weight: 800; font-size: 14px;">👑 Chief Judge Kaushal Manda:</span>
+            <span style="font-size: 18px; font-weight: 900; color: #fef08a;">${item.Kaushal_Total} <span style="font-size: 12px; color: rgba(254,240,138,0.7);">/ 40</span></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: #fde68a;">
+            <span>Looks: <strong>${item.Kaushal_Looks}</strong></span>
+            <span>Walk: <strong>${item.Kaushal_Walk}</strong></span>
+            <span>Conf: <strong>${item.Kaushal_Conf}</strong></span>
+            <span>Int: <strong>${item.Kaushal_Int}</strong></span>
+          </div>
+        </div>
+
+        <div class="breakdown-row">
+          <span><strong>Judge Ashritha:</strong></span>
+          <span style="color: #93c5fd;">${item.Ashritha_Looks} / ${item.Ashritha_Walk} / ${item.Ashritha_Conf} / ${item.Ashritha_Int} = <strong>${item.Ashritha_Total}</strong></span>
+        </div>
+        <div class="breakdown-row">
+          <span><strong>Judge Eshan:</strong></span>
+          <span style="color: #93c5fd;">${item.Eshan_Looks || '-'} / ${item.Eshan_Walk || '-'} / ${item.Eshan_Conf || '-'} / ${item.Eshan_Int || '-'} = <strong>${item.Eshan_Total || '-'}</strong></span>
+        </div>
+        <div class="breakdown-row">
+          <span><strong>Judge Prasanna:</strong></span>
+          <span style="color: #93c5fd;">${item.Prasanna_Looks || '-'} / ${item.Prasanna_Walk || '-'} / ${item.Prasanna_Conf || '-'} / ${item.Prasanna_Int || '-'} = <strong>${item.Prasanna_Total || '-'}</strong></span>
+        </div>
+        
+        ${item.Audit_Notes && item.Audit_Notes !== '-' ? `<div style="margin-top: 14px; font-size: 12px; color: #fbbf24; background: rgba(251, 191, 36, 0.1); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(251, 191, 36, 0.2);">ℹ️ <strong>Auditor Note:</strong> ${item.Audit_Notes}</div>` : ''}
+      `;
+      document.getElementById('modalContent').innerHTML = html;
+      document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    function closeModal(e) {
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+
+    /* Lightweight Confetti Particles */
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId = null;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function fireConfetti() {
+      particles = [];
+      const colors = ['#f59e0b', '#fbbf24', '#fef08a', '#ffffff', '#60a5fa', '#ec4899'];
+      for (let i = 0; i < 120; i++) {
+        particles.push({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2 - 50,
+          vx: (Math.random() - 0.5) * 16,
+          vy: (Math.random() - 0.7) * 18,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 10,
+          opacity: 1
+        });
+      }
+      if (!animationId) animateConfetti();
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = false;
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.35; // gravity
+        p.rotation += p.rotationSpeed;
+        p.opacity -= 0.008;
+        if (p.opacity > 0) {
+          alive = true;
+          ctx.save();
+          ctx.globalAlpha = p.opacity;
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation * Math.PI / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+        }
+      }
+      if (alive) {
+        animationId = requestAnimationFrame(animateConfetti);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        animationId = null;
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>
