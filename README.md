@@ -30,7 +30,7 @@ In this premier Season 2 Hyderabad audition, **Kaushal Manda** served as the cen
 - **Official Cutoff Standard**: **100.0 Points** out of 160.0 Grand Total ($62.5\%$).
 - **Status Breakdown**:
   - ✅ **QUALIFIED FOR FINALE ($\ge 100.0$)**: **130 Contestants** ($97.7\%$)
-  - ❌ **FAILED / ELIMINATED ($< 100.0$)**: **3 Contestants** (`LG 050`: 94.7, `LG 059`: 84.0, `LG 072`: 48.0)
+  - ❌ **FAILED / ELIMINATED ($< 100.0$)**: **3 Contestants** (`LG 050`: 94.7, `LG 059`: 84.0, `LG 072`: 96.0 [Imputed with contestant average 24.0/judge])
 
 ---
 
